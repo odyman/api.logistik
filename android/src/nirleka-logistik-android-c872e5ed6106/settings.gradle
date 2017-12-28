@@ -1,0 +1,6 @@
+include ':camView201'
+include ':locationManager_Eclipse'
+include ':materialTabs_Libs'
+include ':slteclipse'
+include ':squarecamera_eclipse'
+include ':logistikDR'

@@ -1,0 +1,9 @@
+V1.1p1
+======
+* Nilai 0 untuk berat jika form kosong
+* Nilai 0 untuk volume jika form kosong
+
+v1.1
+====
+* Field Berat & Volume di Form Resi
+* Sync Berat & Volume di Resi

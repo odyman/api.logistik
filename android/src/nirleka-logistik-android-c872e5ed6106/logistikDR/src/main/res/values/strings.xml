@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exml_company">Powered-by PT. Excella Megasoft Lintasnusa</string>
+    <string name="client_company">PT. Indocitra Logistik Express Jakarta</string>
+    <string name="tagline2">Express &amp; Logistics.</string>
+    <string name="tagline">eCourier Access Apps</string>
+    <string name="location_ask">eCourier Access membutuhkan informasi lokasi perangkat, silahkan aktifkan terlebih dahulu</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="activity_login_title">Log In</string>
+    <string name="activity_login_username">Username</string>
+    <string name="activity_login_password">Password</string>
+    <string name="activity_login_button_login">Log In</string>
+
+    <string name="activity_pickup_title">Order to Pickup List</string>
+    <string name="activity_pickup_sibtitle">Daftar lokasi customer yang harus dipickup</string>
+
+    <string name="activity_pickup_entry_detail_list_title">Detail Pickup</string>
+    <string name="activity_pickup_entry_detail_list_subtitle">Lokasi customer yang harus dipickup</string>
+    <string name="activity_pickup_entry_detail_list_fr">Daftar Resi / SJ</string>
+
+    <string name="activity_pickup_entry_detail_form_title">Detail Pickup Form</string>
+    <string name="activity_pickup_entry_detail_form_subtitle">Lokasi customer yang harus dipickup</string>
+
+    <string name="activity_pickup_entry_item_list_title">Detail Resi / SJ</string>
+    <string name="activity_pickup_entry_item_list_subtitle">Keterangan Resi / Surat Jalan</string>
+    <string name="activity_pickup_entry_item_list_fr">Daftar Barang</string>
+
+    <string name="activity_pickup_entry_item_form_title">Detail Resi / SJ Form</string>
+    <string name="activity_pickup_entry_item_form_subtitle">Keterangan Resi / Surat Jalan</string>
+
+    <string name="activity_pickup_entry_detail_form_jenispengiriman_btn">&#8230;</string>
+    <string name="activity_pickup_entry_detail_form_namapenerima_btn">&#8230;</string>
+
+    <string name="empty_text">Data Kosong!</string>
+
+    <string name="activity_profile_title">Profil</string>
+    <string name="activity_profile_subtitle">Detil informasi pengguna</string>
+
+
+    <string name="action_add">Tambah</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_profile">Profil</string>
+
+    <string name="activity_pickup_entry_detail_form_nomorresi">No. Resi / SJ</string>
+    <string name="activity_pickup_entry_detail_form_jenispengiriman">Jenis Pengiriman</string>
+    <string name="activity_pickup_entry_detail_form_namabarang">Nama Barang</string>
+    <string name="activity_pickup_entry_detail_form_satuan">Satuan</string>
+    <string name="activity_pickup_entry_detail_form_qty">QTY</string>
+    <string name="activity_pickup_entry_detail_form_berat">Berat</string>
+    <string name="activity_pickup_entry_detail_form_volume">Volume</string>
+    <string name="activity_pickup_entry_detail_form_tanggal">Tanggal Pickup</string>
+    <string name="activity_pickup_entry_detail_form_namapenerima">Nama Penerima</string>
+
+    <string name="configs_server_api">apiendpoint</string>
+    <string name="configs_server_key">apikeys</string>
+
+    <string name="activity_delivery_title">Order to Delivery List</string>
+    <string name="activity_delivery_sibtitle">Daftar order untuk pengiriman barang</string>
+
+    <string name="activity_delivery_entry_detail_list_title">Delivery Task</string>
+    <string name="activity_delivery_entry_detail_list_subtitle">Informasi tugas pengiriman barang</string>
+    <string name="activity_delivery_entry_detail_list_fr">Daftar Resi / SJ</string>
+
+    <string name="activity_delivery_entry_item_list_title">Delivery Detail</string>
+    <string name="activity_delivery_entry_item_list_subtitle">Informasi Resi / SJ barang kirim</string>
+    <string name="activity_delivery_entry_item_list_fr">Daftar Barang</string>
+
+    <string name="activity_delivery_entry_item_form_title">Detail Resi / SJ Form</string>
+    <string name="activity_delivery_entry_item_form_subtitle">Keterangan Resi / Surat Jalan</string>
+
+    <string name="activity_scanner_title">Pindai QRCode</string>
+    <string name="activity_scanner_sibtitle">Arahkan QRCode untuk memindai</string>
+
+    <string name="camera_status_ready">Camera Initialized...</string>
+    <string name="camera_status_err">Camera Error: %s</string>
+    <string name="camera_open_err">Camera Open Error: %s</string>
+    <string name="camera_status_stopped">Camera Stopped...</string>
+    <string name="toggle_flash">Flash</string>
+    <string name="toggle_controll">Start</string>
+
+    <string name="find">Cari</string>
+
+    <string name="activity_cam_title">Mengambil Gambar.</string>
+    <string name="activity_cam_subtitle">Klik Logo Aplikasi untuk mengambil Gambar.</string>
+    <string name="activity_cam_btn">Save</string>
+    <string name="activity_cam_destripciotn">Description</string>
+    <string name="activity_cam_status">Status</string>
+    <string name="activity_cam_status_btn">...</string>
+
+    <string name="activity_warning_title">Peringatan!</string>
+</resources>

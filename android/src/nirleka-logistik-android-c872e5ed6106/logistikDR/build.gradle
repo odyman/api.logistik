@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'LogistikDR'
+            keyPassword 'Exml2016'
+            storeFile file('keystore.jks')
+            storePassword 'Exml2016'
+        }
+    }
+    configurations {
+        all*.exclude module: 'servlet-api'
+    }
+    defaultConfig {
+        applicationId "co.id.exml.logistikdr"
+        minSdkVersion 9
+        targetSdkVersion 24
+        multiDexEnabled true
+
+        versionCode 2
+        versionName "1.1"
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable false
+            signingConfig signingConfigs.releaseConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            resValue "string", "app_name", "eCourier Access"
+        }
+
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "eCourier Access Debug"
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    compile project(':locationManager_Eclipse')
+    compile(project(':materialTabs_Libs')) {
+        exclude group: 'com.nineoldandroids', module: 'library'
+    }
+    compile project(':slteclipse')
+    compile project(':squarecamera_eclipse')
+    compile project(':camView201')
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.google.android.gms:play-services-location:9.6.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile files('libs/activeandroid-3.1-beta.jar')
+    compile files('libs/android-async-http-1.4.9.jar')
+    compile files('libs/httpclient-4.3.6.jar')
+    compile 'com.nineoldandroids:library:2.4.0'
+}

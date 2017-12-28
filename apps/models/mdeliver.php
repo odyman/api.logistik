@@ -1,0 +1,310 @@
+<?php
+
+class Mdeliver extends Models {
+
+    public function __construct() {
+        parent::__construct();        
+    }
+    /**
+     * get delivery list
+     * 
+     * @param type $perpage
+     * @param type $page
+     * @param type $query
+     * @param type $sort
+     * @return array
+     */
+    public function getDeliveryList($kode_unker, $perpage, $page, $query = null, $sort = null) {
+    	$queryDb = $this->db()
+                ->select()
+                ->from('tv_trans_delivery')
+                ->where('id_status', "=", 1)
+                // ->where('kode_unker_delivery', "=", $kode_unker)
+                ->whereLike('kode_delivery', "%$query%");                
+
+        if (empty($sort)) {
+            $queryDb->orderBy("IDP_Delivery", "ASC");
+        } else {
+            $sortType = "ASC";
+            if ($sort[0] == "-") {
+                $sortType = "DESC";
+                $sort = ltrim($sort, '-');
+            }
+            $queryDb->orderBy($sort, $sortType);
+        }
+        
+        $data = $queryDb->limit($perpage, $perpage * ($page-1))
+                                ->execute()
+                                ->fetchAll();
+        $row = $this->db()
+                ->select()
+                ->count($column = '*', 'row')
+                ->from('tv_trans_delivery')
+                ->where('id_status', "=", 1)
+                // ->where('kode_unker_delivery', "=", $kode_unker)
+                ->whereLike('kode_delivery', "%$query%")                
+                ->execute()
+                ->fetch();
+        
+        $count = $row['row'];
+
+        return $this->gt(true, $data, ['count' => $count, 'page' => $page, 'perpage' => $perpage]);
+    }   
+
+    function getDeliveryById($id) {
+        return $this->db()->select(array('*'))
+                ->from("tv_trans_delivery")
+                ->where('IDP_Delivery', "=", $id)
+                ->where('id_status', "=", 1)
+                ->limit(10)
+                ->execute()
+                ->fetch();
+    }
+
+    /**
+     * get delivery detail list
+     * 
+     * @param type $perpage
+     * @param type $page
+     * @param type $query
+     * @param type $sort
+     * @return array
+     */
+    public function getDeliveryDetailList($IDP_Delivery, $perpage, $page, $query = null, $sort = null) {
+    	$queryDb = $this->db()
+                ->select(array('IDP_Delivery_Detail',
+								'IDP_Delivery',
+								'ID_Barang',
+								'kode_AWB',
+								'no_resi',
+								'jenis_barang',
+								'jenis_kirim',
+								'nama_layanan',
+								'nama_pengirim',
+								'nama_penerima',
+								'nama_lokasi_cust_penerima',
+								'nama_kota_destination',
+								'nama_lokasi_destination',
+								'kode_zone_destination',
+								'alamat_destination',
+								'telp_destination',
+								'fax_destination',
+								'nama_barang',
+								'kuantitas',
+								'nama_satuan',
+								'berat_kg',
+								'volume',
+								'payment_method',
+								'latitude_real',
+								'longitude_real',
+								'latitude',
+								'longitude',
+								'nama_lengkap_assign',
+								'ID_Status_Delivery',
+								'status_delivery',
+								'tgl_terima',
+								'delivery_remark',
+								'check_delivery',
+								'ID_Status_Barang',
+								'status_barang'))
+                ->from('tv_trans_delivery_detail')                
+                ->where('IDP_Delivery', "=", $IDP_Delivery)
+                ->whereLike('no_resi', "%$query%");                
+
+        if (empty($sort)) {
+            $queryDb->orderBy("IDP_Delivery_Detail", "ASC");
+        } else {
+            $sortType = "ASC";
+            if ($sort[0] == "-") {
+                $sortType = "DESC";
+                $sort = ltrim($sort, '-');
+            }
+            $queryDb->orderBy($sort, $sortType);
+        }
+        
+        $data = $queryDb->limit($perpage, $perpage * ($page-1))
+                                ->execute()
+                                ->fetchAll();
+        $row = $this->db()
+                ->select()
+                ->count($column = '*', 'row')
+                ->from('tv_trans_delivery_detail')
+                ->where('IDP_Delivery', "=", $IDP_Delivery)
+                ->whereLike('no_resi', "%$query%")                
+                ->execute()
+                ->fetch();
+        
+        $count = $row['row'];
+
+        return $this->gt(true, $data, ['count' => $count, 'page' => $page, 'perpage' => $perpage]);
+    }   
+
+    function getDeliveryDetailInfo($IDP_Delivery_Detail) {
+        return $this->db()->select(array('IDP_Delivery_Detail',
+								'IDP_Delivery',
+								'ID_Barang',
+								'kode_AWB',
+								'no_resi',
+								'jenis_barang',
+								'jenis_kirim',
+								'nama_layanan',
+								'nama_pengirim',
+								'nama_penerima',
+								'nama_lokasi_cust_penerima',
+								'nama_kota_destination',
+								'nama_lokasi_destination',
+								'kode_zone_destination',
+								'alamat_destination',
+								'telp_destination',
+								'fax_destination',
+								'nama_barang',
+								'kuantitas',
+								'nama_satuan',
+								'berat_kg',
+								'volume',
+								'payment_method',
+								'latitude_real',
+								'longitude_real',
+								'latitude',
+								'longitude',
+								'nama_lengkap_assign',
+								'ID_Status_Delivery',
+								'status_delivery',
+								'tgl_terima',
+								'delivery_remark',
+								'check_delivery',
+								'ID_Status_Barang',
+								'status_barang'))
+                ->from("tv_trans_delivery_detail")
+                ->where('IDP_Delivery_Detail', "=", $IDP_Delivery_Detail)                
+                ->limit(10)
+                ->execute()
+                ->fetch();
+    }
+
+    /**
+     * get delivery detail item list
+     * 
+     * @param type $perpage
+     * @param type $page
+     * @param type $query
+     * @param type $sort
+     * @return array
+     */
+    public function getDeliveryDetailItemList($IDP_Delivery, $perpage, $page, $query = null, $sort = null) {
+    	$queryDb = $this->db()
+                ->select()
+                ->from('tv_trans_delivery_detail_list')                
+                ->where('IDP_Delivery', "=", $IDP_Delivery)                
+                ->whereLike('kode_barcode', "%$query%");                
+
+        if (empty($sort)) {
+            $queryDb->orderBy("IDP_Delivery_Detail_List", "ASC");
+        } else {
+            $sortType = "ASC";
+            if ($sort[0] == "-") {
+                $sortType = "DESC";
+                $sort = ltrim($sort, '-');
+            }
+            $queryDb->orderBy($sort, $sortType);
+        }
+        
+        $data = $queryDb->limit($perpage, $perpage * ($page-1))
+                                ->execute()
+                                ->fetchAll();
+        $row = $this->db()
+                ->select()
+                ->count($column = '*', 'row')
+                ->from('tv_trans_delivery_detail_list')                
+                ->where('IDP_Delivery', "=", $IDP_Delivery)                
+                ->whereLike('kode_barcode', "%$query%")             
+                ->execute()
+                ->fetch();
+        
+        $count = $row['row'];
+
+        return $this->gt(true, $data, ['count' => $count, 'page' => $page, 'perpage' => $perpage]);
+    }  
+
+    /**
+     * post process simpan databarcode
+     * 
+     * @param $dataProc
+     * @return message
+     */
+
+    public function processDelivery( $dataProc ){
+		try {
+			$stmt2 = $this->db()->prepare("CALL `_proses_delivery_apk_detail` ( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$stmt2->execute( $dataProc );
+		}catch(PDOException $e) {
+			$error = $e->getMessage();
+		};
+	}
+	
+	public function processDeliveryItem( $dataProc ){
+		try {
+			$stmt2 = $this->db()->prepare("CALL `_proses_delivery_apk_detail_list` ( ?, ?, ?, ?, ? )");
+			$stmt2->execute( $dataProc );
+		}catch(PDOException $e) {
+			$error = $e->getMessage();
+		};
+	}
+
+	/**
+     * post scan qrcode delivery 
+     * 
+     * @param $dataProc
+     * @return message
+     */    
+    function scancekQRCodeDelivery( $data, & $errorMessage ) {
+        $this->db->beginTransaction();        
+        try {                       
+          //--> Call stored function
+          $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."') AS message");
+          $stmt->execute();          
+          $result = $stmt->fetch();          
+          
+          return $result;
+        }catch(PDOException $e) {
+          $error = $e->getMessage();
+          return $error;
+        }        
+    }
+
+    /**
+     * post process simpan data qrcode delivery
+     * 
+     * @param $dataProc
+     * @return message
+     */
+
+    public function saveQRCodeDelivery( $data, & $errorMessage ) {
+        
+        // try {            
+            //--> Call stored procedure
+            // $stmt2 = $this->db()->prepare("CALL _proses_delivery_barcode_save(".$data['_ID'].",'".$data['_QR']."','".['_KET']."')");
+            // $stmt2->bindParam(1, $return_value, PDO::PARAM_STR, 4000);
+            // $stmt2->execute($data);                        
+            try {
+              $stmt2 = $this->db()->prepare("CALL _proses_delivery_barcode_save(?, ?, ?)");        
+              $stmt2->execute( $data );
+              $this->db->commit();
+              return true;
+
+            }catch(PDOException $e) {
+              // $error = $e->getMessage();
+              $errorMessage = "asas";
+              $this->db->rollBack();
+              return false;
+            };         
+
+            // return $return_value;
+
+        // }catch(Exception $e) {            
+        //     $errorMessage = $e->getMessage();
+        //     $this->db->rollBack();
+        //     return FALSE;
+        // }
+    }
+}

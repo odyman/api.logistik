@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/confirm_diload_input_pickup_label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masukan Berat : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/confirm_diload_input_pickup_edit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:text="0" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/confirm_diload_input_pickup_label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masukan Volume : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/confirm_diload_input_pickup_edit2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:text="0" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/confirm_diload_input_pickup_label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masukan Keterangan : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/confirm_diload_input_pickup_edit3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-" >
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="exml_color_primary">#0f2030</color>
+    <color name="exml_color_secondry">#5c7b9a</color>
+    <color name="exml_color_secondry2">#9aaec2</color>
+    <color name="exml_color_white">#ffffff</color>
+
+</resources>

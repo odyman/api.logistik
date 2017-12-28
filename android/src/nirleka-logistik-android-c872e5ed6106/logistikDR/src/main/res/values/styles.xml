@@ -1,0 +1,62 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="dashboard">
+        <item name="android:numColumns">2</item>
+    </style>
+
+    <style name="ExmlActionBarTheme" parent="AppBaseTheme">
+        <item name="android:actionBarStyle">@style/ExmlActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/ExmlActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/exml_color_white</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ExmlActionBar</item>
+        <item name="actionBarTabTextStyle">@style/ExmlActionBarTabText</item>
+        <item name="actionMenuTextColor">@color/exml_color_white</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="ExmlActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/exml_color_primary</item>
+        <item name="android:titleTextStyle">@style/ExmlActionBarTitleText</item>
+        <item name="android:subtitleTextStyle">@style/ExmlActionBarSubtitleText</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@color/exml_color_primary</item>
+        <item name="titleTextStyle">@style/ExmlActionBarTitleText</item>
+        <item name="subtitleTextStyle">@style/ExmlActionBarSubtitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="ExmlActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/exml_color_white</item>
+    </style>
+
+    <style name="ExmlActionBarSubtitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textSize">11dip</item>
+        <item name="android:textColor">@color/exml_color_secondry2</item>
+    </style>
+
+    <!-- ActionBar tabs text -->
+    <style name="ExmlActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/exml_color_white</item>
+    </style>
+
+</resources>

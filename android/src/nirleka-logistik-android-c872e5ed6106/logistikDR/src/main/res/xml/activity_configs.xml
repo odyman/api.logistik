@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="Server configurations"
+        android:title="Server" >
+        <EditTextPreference
+            android:key="apiendpoints"
+            android:summary="API Endpoints of LogisticAPI"
+            android:title="API" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

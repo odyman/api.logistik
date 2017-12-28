@@ -1,0 +1,156 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_nomorresi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/activity_pickup_entry_detail_form_nomorresi"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true" />
+
+    <RelativeLayout
+        android:id="@+id/activity_pickup_entry_detail_form_jenispengiriman_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_nomorresi" >
+
+        <EditText
+            android:id="@+id/activity_pickup_entry_detail_form_jenispengiriman"
+            android:layout_width="match_parent"
+            android:editable="false"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/activity_pickup_entry_detail_form_jenispengiriman_btn"
+            android:hint="@string/activity_pickup_entry_detail_form_jenispengiriman"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/activity_pickup_entry_detail_form_jenispengiriman_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/activity_pickup_entry_detail_form_jenispengiriman"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:singleLine="true"
+            android:text="@string/activity_pickup_entry_detail_form_jenispengiriman_btn" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_namabarang"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_jenispengiriman_block"
+        android:hint="@string/activity_pickup_entry_detail_form_namabarang"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_satuan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_namabarang"
+        android:hint="@string/activity_pickup_entry_detail_form_satuan"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_qty"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_satuan"
+        android:hint="@string/activity_pickup_entry_detail_form_qty"
+        android:inputType="number"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true" />
+
+    <RelativeLayout
+        android:id="@+id/activity_pickup_entry_detail_form_namapenerima_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_qty" >
+
+        <co.id.exml.logistikdr.utils.Nuturkeun
+            android:id="@+id/activity_pickup_entry_detail_form_namapenerima"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:editable="false"
+            android:layout_toLeftOf="@+id/activity_pickup_entry_detail_form_namapenerima_btn"
+            android:hint="@string/activity_pickup_entry_detail_form_namapenerima"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:maxLength="240"
+            android:textSize="18dip"
+            android:singleLine="false"
+            android:inputType="textMultiLine|textNoSuggestions" />
+
+        <Button
+            android:id="@+id/activity_pickup_entry_detail_form_namapenerima_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:singleLine="false"
+            android:text="@string/activity_pickup_entry_detail_form_namapenerima_btn" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_berat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_namapenerima_block"
+        android:hint="@string/activity_pickup_entry_detail_form_berat"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/activity_pickup_entry_detail_form_volume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/activity_pickup_entry_detail_form_berat"
+        android:hint="@string/activity_pickup_entry_detail_form_volume"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:maxLines="1"/>
+
+</RelativeLayout>

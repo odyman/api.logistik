@@ -1,0 +1,15 @@
+{
+    "require": {
+        "slim/slim": "3.0",
+		"slim/pdo": "1.9.8",
+		"monolog/monolog": "^1.19"
+    },
+	"autoload": {
+		"classmap": [
+			"apps",
+			"apps/models",
+			"apps/controllers",
+			"apps/classes"
+		]
+	}
+}

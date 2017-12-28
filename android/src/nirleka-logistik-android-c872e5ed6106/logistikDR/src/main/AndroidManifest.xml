@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="co.id.exml.logistikdr">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="24" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera2" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" tools:ignore="MockLocation"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission-group
+        android:name="android.permission-group.LOCATION"
+        android:description="@string/location_ask"
+        android:label="@string/app_name" />
+
+    <application
+        tools:replace="theme"
+        android:name=".LogistikApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/ExmlActionBarTheme" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="LogistikDR-DB-7.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="2" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="co.id.exml.logistikdr.dojo.DojoUser,
+            co.id.exml.logistikdr.dojo.DojoPickupBarcodeAvailable,
+            co.id.exml.logistikdr.dojo.DojoHash,
+            co.id.exml.logistikdr.dojo.DojoPickupCustomer,
+            co.id.exml.logistikdr.dojo.DojoPickupDetail,
+            co.id.exml.logistikdr.dojo.DojoPickupItem,
+            co.id.exml.logistikdr.dojo.DojoPickupOrder,
+            co.id.exml.logistikdr.dojo.DojoPickupJenisKirim,
+            co.id.exml.logistikdr.dojo.DojoDeliveryOrder,
+            co.id.exml.logistikdr.dojo.DojoDeliveryDetail,
+            co.id.exml.logistikdr.dojo.DojoDeliveryItem,
+            co.id.exml.logistikdr.dojo.DojoDeliveryStatus" />
+
+        <receiver
+            android:name="co.id.exml.logistikdr.svc.LogistikWakefulReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="co.id.exml.logistikdr.svc.LogistikWakefulService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".ActivityLogin"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityMain"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityConfig"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityBaka"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityPickup"
+            android:label="@string/activity_pickup_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityPickupDetailForm"
+            android:label="@string/activity_pickup_entry_detail_form_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityPickupItemInfo"
+            android:label="@string/activity_pickup_entry_item_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.tab.TabFragmentPickupDetail"
+            android:label="@string/activity_pickup_entry_detail_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.tab.TabFragmentPickupItem"
+            android:label="@string/activity_pickup_entry_item_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityProfile"
+            android:label="@string/activity_profile_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityDelivery"
+            android:label="@string/activity_delivery_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityDeliveryItemInfo"
+            android:label="@string/activity_delivery_entry_item_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.tab.TabFragmentDeliveryDetail"
+            android:label="@string/activity_delivery_entry_detail_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.tab.TabFragmentDeliveryItem"
+            android:label="@string/activity_delivery_entry_item_list_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityScanner"
+            android:label="@string/activity_scanner_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityScannerDelivery"
+            android:label="@string/activity_scanner_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityCam"
+            android:label="@string/activity_cam_title"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="co.id.exml.logistikdr.fragment.activity.ActivityWarning"
+            android:label="@string/activity_warning_title"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.desmond.squarecamera.CameraActivity" />
+        <activity android:name="com.desmond.squarecamera.RuntimePermissionActivity" />
+
+        <!-- activity
+            android:name="com.google.zxing.client.android.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-->
+
+    </application>
+
+</manifest>
