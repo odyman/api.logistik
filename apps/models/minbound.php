@@ -197,8 +197,9 @@ class Minbound extends Models {
             // $stmt2->bindParam(1, $return_value, PDO::PARAM_STR, 4000);
             // $stmt2->execute($data);                        
             try {
-              $stmt2 = $this->db()->prepare("CALL `_proses_inbound_bast_barcode_save` (?, ?, ?, ?, ?, ?, ?, ?)");        
-              $stmt2->execute( $data );              
+              $stmt2 = $this->db->prepare("CALL `_proses_inbound_bast_barcode_save` (?, ?, ?, ?, ?, ?, ?, ?)");        
+              $stmt2->execute( $data );                            
+              $this->db->commit();
 
               return true;
             }catch(PDOException $e) {
