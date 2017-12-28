@@ -7,13 +7,17 @@ $baseurl	= "$http" . $_SERVER['SERVER_NAME'] . "" . $newurl;
 return array(
 	"db" => array(
 		//--> Development
-		"hostname" => "localhost",
-		"username" => "root",
-		"password" => "",
+		// "hostname" => "localhost",
+		// "username" => "root",
+		// "password" => "",
 		//--> Staging
+		"hostname" => "192.168.0.10",
+		"username" => "root",
+		"password" => "simpeg",		
+		//--> Production
 		// "hostname" => "192.168.0.9",
 		// "username" => "root",
-		// "password" => "simpeg",		
+		// "password" => "Exml#17",		
 		"database" => "db_access_logistic"
 	),
 	"api" => array(
