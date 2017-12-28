@@ -12,7 +12,8 @@ class Muser extends Models {
 	
 	function getUserData( $username ){
 		$username = trim( $username );
-		$selectStatement = $this->db()->select(array('ta.user', 'ta.pass', 'ta.NIP', 'ta.type', 'tv.kode_unker'))
+		$selectStatement = $this->db()->select(
+								array('ta.user', 'ta.pass', 'ta.NIP', 'ta.type', 'tv.kode_unker', 'tv.nama_lengkap', 'tv.nama_unker'))
 						   ->from('tuser_android ta')						   
 						   ->join('tv_user_android_list tv', 'ta.ID_User_Driver', '=', 'tv.ID_User_Driver')
 						   ->where('ta.user', '=', $username )
@@ -34,8 +35,10 @@ class Muser extends Models {
 			if( Muser::passwordEuy( $username, $data["pass"], false ) == Muser::passwordEuy( $username, $password ) ) {
 				$result['token'] = base64_encode( $username . '-exmlindonesia-' . Muser::passwordEuy( $username, $password ) );
 				$result['nip'] = $data["NIP"];
+				$result['nama_lengkap'] = $data["nama_lengkap"];
 				$result['type'] = $data["type"];
 				$result['kode_unker'] = $data["kode_unker"];
+				$result['nama_unker'] = $data["nama_unker"];
 				$result['status'] = true;
 				$result['message'] = 'success';
 			}else{
