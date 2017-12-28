@@ -123,12 +123,12 @@ class Cinbound extends Controllers {
     public function saveQRCodeInbound($request, $response, $args) {
         $model = Minbound::getInstance($request);
         $errorMessage = '';
-        // return $response->withJSON(Minbound::getInstance()->saveQRCodeInbound($request->getParsedBody(), $errorMessage));
-        if (Minbound::getInstance()->saveQRCodeInbound($request->getParsedBody(), $errorMessage))
-        {
-            $this->rSuccess("Inbound berhasil disimpan.");
-        } else {
-            $this->rError($errorMessage);
-        }       
+        return $response->withJSON(Minbound::getInstance()->saveQRCodeInbound($request->getParsedBody(), $errorMessage));
+        // if (Minbound::getInstance()->saveQRCodeInbound($request->getParsedBody(), $errorMessage))
+        // {
+        //     $this->rSuccess("Inbound berhasil disimpan.");
+        // } else {
+        //     $this->rError($errorMessage);
+        // }       
     }
 }
