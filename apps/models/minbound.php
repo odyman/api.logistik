@@ -233,11 +233,11 @@ class Minbound extends Models {
                     ->execute();
             $this->db->commit();
 
-            $this->db->update( $data_update )
-                ->table( 'logistik_tbarcode_list' )
-                ->where( 'kode_barcode', '=', $data['kode_barcode'] )
-                ->execute();
-            $this->db->commit();
+            // $this->db->update( $data_update )
+            //     ->table( 'logistik_tbarcode_list' )
+            //     ->where( 'kode_barcode', '=', $data['kode_barcode'] )
+            //     ->execute();
+            // $this->db->commit();
             
             return true;
         } catch (Exception $ex) {
