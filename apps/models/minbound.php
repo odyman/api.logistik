@@ -205,7 +205,7 @@ class Minbound extends Models {
         };                             
     }
 
-     /**
+    /**
      * post process simpan data qrcode inbound
      * 
      * @param $dataProc
@@ -225,25 +225,38 @@ class Minbound extends Models {
 
         $data_save = array_merge($data, $data_s_insert);
 
-        try{
+        try{            
             //--> Insert
             $this->db->insert( array_keys($data_save) )
                     ->into( 'logistik_ttrans_inbound_bast_detail_list' )
                     ->values( array_values($data_save) )
                     ->execute();
             $this->db->commit();
-
-            // $this->db->update( $data_update )
-            //     ->table( 'logistik_tbarcode_list' )
-            //     ->where( 'kode_barcode', '=', $data['kode_barcode'] )
-            //     ->execute();
-            // $this->db->commit();
+            
+            //--> Update status_barcode =2
+            $this->updateBarcode( $data_update, $data['kode_barcode'] );            
             
             return true;
         } catch (Exception $ex) {
             $errorMessage = "QRCode failed save!";
             $this->db->rollBack();
-            return FALSE;
+            return false;
         }          
+    }
+
+    public function updateBarcode( $data, $key_data ) {  
+        $this->db->beginTransaction();      
+        
+        try{
+            $this->db->update( $data )
+                ->table( 'logistik_tbarcode_list' )
+                ->where( 'kode_barcode', '=', $key_data )
+                ->execute();
+            $this->db->commit();
+            return true;
+        } catch (Exception $ex) {            
+            $this->db->rollBack();
+            return false;
+        }
     }
 }
