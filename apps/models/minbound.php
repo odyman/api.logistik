@@ -189,31 +189,61 @@ class Minbound extends Models {
      * @return message
      */
 
-    public function saveQRCodeInbound( $data, & $errorMessage ) {
-        
-        // try {            
-            //--> Call stored procedure
-            // $stmt2 = $this->db()->prepare("CALL _proses_inbound_bast_barcode_save(".$data['_ID'].",'".$data['_QR']."',".$data['_B'].",".['_V'].",".['_L'].",".['_P'].",".['_T'].",'".['_KET']."')");
-            // $stmt2->bindParam(1, $return_value, PDO::PARAM_STR, 4000);
-            // $stmt2->execute($data);                        
-            try {
-              $stmt2 = $this->db()->prepare("CALL `_proses_inbound_bast_barcode_save` (?, ?, ?, ?, ?, ?, ?, ?)");        
-              $stmt2->execute( $data );              
-              $this->db()->commit();              
+    public function _saveQRCodeInbound( $data, & $errorMessage ) {  
+    
+        //--> Call stored procedure                    
+        try {
+          $stmt2 = $this->db()->prepare("CALL `_proses_inbound_bast_barcode_save` (?, ?, ?, ?, ?, ?, ?, ?)");        
+          $stmt2->execute( $data );              
+          $this->db()->commit();              
 
-              return true;
-            }catch(PDOException $e) {
-              $error = $e->getMessage();              
-              $this->db->rollBack();
-              return false;
-            };         
+          return true;
+        }catch(PDOException $e) {
+          $error = $e->getMessage();              
+          $this->db->rollBack();
+          return false;
+        };                             
+    }
 
-            // return $return_value;
+     /**
+     * post process simpan data qrcode inbound
+     * 
+     * @param $dataProc
+     * @return message
+     */
 
-        // }catch(Exception $e) {            
-        //     $errorMessage = $e->getMessage();
-        //     $this->db->rollBack();
-        //     return FALSE;
-        // }
+    public function saveQRCodeInbound( $data, & $errorMessage ) {  
+        $this->db->beginTransaction();
+        $data_s_insert = array(                     
+            'createdDate' => date("Y-m-d H:i:s")
+        );
+
+        $data_update = array(
+            'status_barcode' => 2,                        
+            'updatedDate' => date("Y-m-d H:i:s")
+        );         
+
+        $data_save = array_merge($data, $data_s_insert);
+
+        try{
+            //--> Insert
+            $this->db->insert( array_keys($data_save) )
+                    ->into( 'logistik_ttrans_inbound_bast_detail_list' )
+                    ->values( array_values($data_save) )
+                    ->execute();
+            $this->db->commit();
+
+            $this->db->update( $data_update )
+                ->table( 'logistik_tbarcode_list' )
+                ->where( 'kode_barcode', '=', $data['kode_barcode'] )
+                ->execute();
+            $this->db->commit();
+            
+            return true;
+        } catch (Exception $ex) {
+            $errorMessage = "QRCode failed save!";
+            $this->db->rollBack();
+            return FALSE;
+        }          
     }
 }
