@@ -116,13 +116,18 @@ class Cdelivery extends Controllers {
         return $response->withJSON(Mdeliver::getInstance()->scancekQRCodeDelivery($request->getParsedBody(), $errorMessage));
     }
 
+    public function _saveQRCodeDelivery($request, $response, $args) {
+        $model = Mdeliver::getInstance($request);
+        $errorMessage = '';
+        return $response->withJSON(Mdeliver::getInstance()->_saveQRCodeDelivery($request->getParsedBody(), $errorMessage));      
+    }
+
     public function saveQRCodeDelivery($request, $response, $args) {
         $model = Mdeliver::getInstance($request);
         $errorMessage = '';
-        // return $response->withJSON(Mdeliver::getInstance()->saveQRCodeDelivery($request->getParsedBody(), $errorMessage));
         if (Mdeliver::getInstance()->saveQRCodeDelivery($request->getParsedBody(), $errorMessage))
         {
-            $this->rSuccess("Delivery berhasil disimpan.");
+            $this->rSuccess("QRCode saved.");
         } else {
             $this->rError($errorMessage);
         }       

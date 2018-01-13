@@ -278,33 +278,49 @@ class Mdeliver extends Models {
      * @param $dataProc
      * @return message
      */
+    public function _saveQRCodeDelivery( $data, & $errorMessage ) {
+        //--> Call stored procedure
+        try {
+          $stmt2 = $this->db()->prepare("CALL _proses_delivery_barcode_save(?, ?, ?)");        
+          $stmt2->execute( $data );
+          $this->db->commit();
 
-    public function saveQRCodeDelivery( $data, & $errorMessage ) {
-        
-        // try {            
-            //--> Call stored procedure
-            // $stmt2 = $this->db()->prepare("CALL _proses_delivery_barcode_save(".$data['_ID'].",'".$data['_QR']."','".['_KET']."')");
-            // $stmt2->bindParam(1, $return_value, PDO::PARAM_STR, 4000);
-            // $stmt2->execute($data);                        
-            try {
-              $stmt2 = $this->db()->prepare("CALL _proses_delivery_barcode_save(?, ?, ?)");        
-              $stmt2->execute( $data );
-              $this->db->commit();
-              return true;
-
-            }catch(PDOException $e) {
-              // $error = $e->getMessage();
-              $errorMessage = "asas";
-              $this->db->rollBack();
-              return false;
-            };         
-
-            // return $return_value;
-
-        // }catch(Exception $e) {            
-        //     $errorMessage = $e->getMessage();
-        //     $this->db->rollBack();
-        //     return FALSE;
-        // }
+          return true;
+        }catch(PDOException $e) {
+          $error = $e->getMessage();
+          $this->db->rollBack();
+          return false;
+        };         
     }
+
+    /**
+     * post process simpan data qrcode delivery
+     * 
+     * @param $dataProc
+     * @return message
+     */
+    public function saveQRCodeDelivery( $data, & $errorMessage ) {  
+        $this->db->beginTransaction();
+        $data_s_insert = array(                     
+            'createdDate' => date("Y-m-d H:i:s")
+        );       
+
+        $data_save = array_merge($data, $data_s_insert);
+
+        try{            
+            //--> Insert
+            $this->db->insert( array_keys($data_save) )
+                    ->into( 'logistik_ttrans_delivery_detail_list' )
+                    ->values( array_values($data_save) )
+                    ->execute();
+            $this->db->commit();   
+            
+            return true;
+        } catch (Exception $ex) {
+            $errorMessage = "QRCode failed save!";
+            $this->db->rollBack();
+            return false;
+        }          
+    }
+
 }

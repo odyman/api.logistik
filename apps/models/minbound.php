@@ -188,9 +188,7 @@ class Minbound extends Models {
      * @param $dataProc
      * @return message
      */
-
     public function _saveQRCodeInbound( $data, & $errorMessage ) {  
-    
         //--> Call stored procedure                    
         try {
           $stmt2 = $this->db()->prepare("CALL `_proses_inbound_bast_barcode_save` (?, ?, ?, ?, ?, ?, ?, ?)");        
@@ -211,7 +209,6 @@ class Minbound extends Models {
      * @param $dataProc
      * @return message
      */
-
     public function saveQRCodeInbound( $data, & $errorMessage ) {  
         $this->db->beginTransaction();
         $data_s_insert = array(                     
