@@ -291,7 +291,7 @@ class Mdeliver extends Models {
         if(count($stmt->fetch()) > 0){
           $result = $stmt->fetch();   
         }else{
-          $result = array();
+          $result = array('ID_Barang_Detail' => '');
         } 
 
         return $result;
