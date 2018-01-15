@@ -266,7 +266,7 @@ class Mdeliver extends Models {
           $result = $stmt->fetch();          
           // $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
           // $data = array_merge($result, array());
-          $data = $this->get_barang_detail($data['_ID'], $data['_QR'])
+          $data = $this->get_barang_detail($data['_ID'], $data['_QR']);
           return $data;
 
         }catch(PDOException $e) {
