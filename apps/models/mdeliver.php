@@ -265,10 +265,8 @@ class Mdeliver extends Models {
           $stmt->execute();          
           $result = $stmt->fetch();          
           $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
-          // $data = array_merge($result, array());
-          // $data = $this->get_barang_detail($data['_ID'], $data['_QR']);
-          return $data;
 
+          return $data;
         }catch(PDOException $e) {
           $error = $e->getMessage();
           return $error;
@@ -291,10 +289,10 @@ class Mdeliver extends Models {
         if(count($stmt->fetch()) > 0){
           $result = $stmt->fetch();   
         }else{
-          $result = array('ID_Barang_Detail' => '');
+          $result = array('ID_Barang_Detail' => 0);
         } 
 
-        return array('ID_Barang_Detail' => '');
+        return $result;
     }   
 
     /**
