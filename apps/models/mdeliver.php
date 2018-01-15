@@ -276,7 +276,7 @@ class Mdeliver extends Models {
     }
 
     function get_barang_detail($id, $qrcode){
-        $result = array('ID_Barang_Detail' => '');
+        
         $sql = "SELECT c.ID_Barang_Detail as ID_Barang_Detail
                 FROM `logistik_ttrans_delivery` a
                 LEFT JOIN `logistik_ttrans_delivery_detail` b ON a.IDP_Delivery = b.IDP_Delivery
@@ -287,8 +287,12 @@ class Mdeliver extends Models {
         $stmt->bindParam(":_ID", $id);
         $stmt->bindParam(":_QR", $qrcode);
         $stmt->execute();
-        
-        if(count($stmt->fetch()) > 0) $result = $stmt->fetch(); 
+
+        if(count($stmt->fetch()) > 0){
+          $result = $stmt->fetch();   
+        }else{
+          $result = array();
+        } 
 
         return $result;
     }   
