@@ -294,7 +294,7 @@ class Mdeliver extends Models {
           $result = array('ID_Barang_Detail' => '');
         } 
 
-        return $result;
+        return array('ID_Barang_Detail' => '');
     }   
 
     /**
