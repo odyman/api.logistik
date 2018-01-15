@@ -261,17 +261,37 @@ class Mdeliver extends Models {
         $this->db->beginTransaction();        
         try {                       
           //--> Call stored function
-          $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."') AS message");
+          $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."')");
           $stmt->execute();          
           $result = $stmt->fetch();          
-          
-          return $result;
+
+        $data = array(
+            'message'          => $result,
+            'ID_Barang_Detail'  => $this->get_barang_detail($data['_ID'], $data['_QR']),                                
+        );
+        return $data;
+
         }catch(PDOException $e) {
           $error = $e->getMessage();
           return $error;
         }        
     }
 
+    function get_barang_detail($id, $qrcode){
+
+        $sql = "SELECT c.ID_Barang_Detail as ID_Barang_Detail
+                FROM `logistik_ttrans_delivery` a
+                LEFT JOIN `logistik_ttrans_delivery_detail` b ON a.IDP_Delivery = b.IDP_Delivery
+                LEFT JOIN `logistik_tbarang_detail` c ON b.ID_Barang = c.ID_Barang
+                WHERE a.IDP_Delivery =:_ID  AND c.kode_barcode =:_QR ";
+
+        $stmt = $this->db()->prepare($sql);
+        $stmt->bindParam(":_ID", $id);
+        $stmt->bindParam(":_QR", $qrcode);
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     /**
      * post process simpan data qrcode delivery
      * 
