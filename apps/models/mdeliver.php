@@ -264,7 +264,8 @@ class Mdeliver extends Models {
           $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."')  AS message");
           $stmt->execute();          
           $result = $stmt->fetch();          
-          $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
+          // $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
+          $data = array_merge($result, array());
 
           return $data;
 
@@ -275,7 +276,7 @@ class Mdeliver extends Models {
     }
 
     function get_barang_detail($id, $qrcode){
-
+        $result = array();
         $sql = "SELECT c.ID_Barang_Detail as ID_Barang_Detail
                 FROM `logistik_ttrans_delivery` a
                 LEFT JOIN `logistik_ttrans_delivery_detail` b ON a.IDP_Delivery = b.IDP_Delivery
@@ -285,10 +286,12 @@ class Mdeliver extends Models {
         $stmt = $this->db()->prepare($sql);
         $stmt->bindParam(":_ID", $id);
         $stmt->bindParam(":_QR", $qrcode);
-
         $stmt->execute();
-        return $stmt->fetch();
-    }
+        $stmt->fetch();
+        $result = $stmt->fetch();
+
+        return $result;
+    }   
     /**
      * post process simpan data qrcode delivery
      * 
