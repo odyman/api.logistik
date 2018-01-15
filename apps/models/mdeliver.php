@@ -265,10 +265,7 @@ class Mdeliver extends Models {
           $stmt->execute();          
           $result = $stmt->fetch();          
 
-        $data = array(
-            'message'          => $result,
-            'ID_Barang_Detail'  => $this->get_barang_detail($data['_ID'], $data['_QR']),                                
-        );
+        $data = array($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
         return $data;
 
         }catch(PDOException $e) {
