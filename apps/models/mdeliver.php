@@ -287,11 +287,12 @@ class Mdeliver extends Models {
         $stmt->bindParam(":_ID", $id);
         $stmt->bindParam(":_QR", $qrcode);
         $stmt->execute();
-        $stmt->fetch();
-        $result = $stmt->fetch();
+        
+        if(count($stmt->fetch()) > 0) $result = $stmt->fetch(); 
 
         return $result;
     }   
+
     /**
      * post process simpan data qrcode delivery
      * 
