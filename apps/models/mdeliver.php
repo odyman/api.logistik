@@ -261,14 +261,12 @@ class Mdeliver extends Models {
         $this->db->beginTransaction();        
         try {                       
           //--> Call stored function
-          $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."')  AS message");
+          $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."') AS message");
           $stmt->execute();          
           $result = $stmt->fetch();          
-          // $ID_Barang_Detail = $this->get_barang_detail($data['_ID'], $data['_QR']);
+          $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
 
-          $data = array_merge($result, );
-
-          return $this->get_barang_detail($data['_ID'], $data['_QR']);
+          return $data;
         }catch(PDOException $e) {
           $error = $e->getMessage();
           return $error;
@@ -287,7 +285,13 @@ class Mdeliver extends Models {
         $stmt->bindParam(":_ID", $id);
         $stmt->bindParam(":_QR", $qrcode);
         $stmt->execute();
-        $result = $stmt->fetch());
+        $result = $stmt->fetch();
+
+        if ($stmt->rowCount() > 0) {
+          $result->ID_Barang_Detail;            
+        }else{
+          $result = array('ID_Barang_Detail' => 0);
+        }
 
         return $result;
     }   
