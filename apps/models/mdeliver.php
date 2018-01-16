@@ -264,9 +264,11 @@ class Mdeliver extends Models {
           $stmt = $this->db()->prepare("SELECT f_info_qrcode_delivery_apk(".$data['_ID'].",'".$data['_QR']."')  AS message");
           $stmt->execute();          
           $result = $stmt->fetch();          
-          $data = array_merge($result, $this->get_barang_detail($data['_ID'], $data['_QR']));
+          // $ID_Barang_Detail = $this->get_barang_detail($data['_ID'], $data['_QR']);
 
-          return $data;
+          $data = array_merge($result, );
+
+          return $this->get_barang_detail($data['_ID'], $data['_QR']);
         }catch(PDOException $e) {
           $error = $e->getMessage();
           return $error;
@@ -274,7 +276,7 @@ class Mdeliver extends Models {
     }
 
     function get_barang_detail($id, $qrcode){
-        
+        $result = [];
         $sql = "SELECT c.ID_Barang_Detail as ID_Barang_Detail
                 FROM `logistik_ttrans_delivery` a
                 LEFT JOIN `logistik_ttrans_delivery_detail` b ON a.IDP_Delivery = b.IDP_Delivery
@@ -285,12 +287,7 @@ class Mdeliver extends Models {
         $stmt->bindParam(":_ID", $id);
         $stmt->bindParam(":_QR", $qrcode);
         $stmt->execute();
-
-        if(count($stmt->fetch()) > 0){
-          $result = $stmt->fetch();   
-        }else{
-          $result = array('ID_Barang_Detail' => 0);
-        } 
+        $result = $stmt->fetch());
 
         return $result;
     }   
